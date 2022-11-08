@@ -1,7 +1,9 @@
 # home_budget
+
 Containerized read-in and storage of budget data
 
 ## Purpose
+
 Pretty simple - I've been keeping my home budget in an Excel spreadsheet for years, it's about time it was stored in a db.  Plus I wanted to do more Rust stuff.
 
 ## Pre-requisites
@@ -14,19 +16,27 @@ Pretty simple - I've been keeping my home budget in an Excel spreadsheet for yea
 ## Usage
 
 1. Create `.env` file:
-  - ```bash
-  BUDGET_FILEPATH=<PATH TO OLD BUDGET WORKBOOK>
 
-  DATABASE_URL=postgres://<USERNAME>:<PASSWORD>@localhost/<DB NAME>
+  ```bash
+  BUDGET_FILEPATH={PATH TO OLD BUDGET WORKBOOK}
 
-  POSTGRES_USER=<USERNAME>
-  POSTGRES_PASSWORD=<PASSWORD>
-  POSTGRES_DB=<DB NAME>
+  DATABASE_URL=postgres://{USERNAME}:{PASSWORD}@localhost/{DB NAME}
+
+  POSTGRES_USER={USERNAME}
+  POSTGRES_PASSWORD={PASSWORD}
+  POSTGRES_DB={DB NAME}
   ```
-2. Spin up your postgres container
-  - `docker-compose up -d`
-3. Run your migrations
-  - `diesel migration run`
-4. Run the `upload_all` to load in all worksheets found at `BUDGET_FILEPATH`
-  - `cargo run --bin upload_all`
-  - NOTE: Worksheet names are expected to have the format `%B %Y` e.g. `November 2022` [Rust Date Formats](https://docs.rs/chrono/latest/chrono/format/strftime/index.html)
+
+1. Spin up your postgres container
+  
+- `docker-compose up -d`
+
+1. Run your migrations
+
+- `diesel migration run`
+
+1. Run the `upload_all` to load in all worksheets found at `BUDGET_FILEPATH`
+
+- `cargo run --bin upload_all`
+
+- NOTE: Worksheet names are expected to have the format `%B %Y` e.g. `November 2022` [Rust Date Formats](https://docs.rs/chrono/latest/chrono/format/strftime/index.html)
