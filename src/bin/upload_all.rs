@@ -8,10 +8,11 @@ use dotenvy::dotenv;
 
 use home_budget::*;
 
-fn main() {
-    // use self::schema::transactions::dsl::*;
 
-    let mut budget_wb: Ods<_> = open_workbook("/home/rainman/Documents/Budget.ods").unwrap();
+fn main() {
+    dotenv().ok();
+
+    let mut budget_wb: Ods<_> = open_workbook(env::var("BUDGET_FILEPATH").unwrap()).unwrap();
     let connection = &mut establish_pg_connection();
 
     for worksheet in budget_wb.worksheets() {
@@ -49,6 +50,7 @@ fn main() {
         }
     }
 }
+
 
 pub fn establish_pg_connection() -> PgConnection {
     dotenv().ok();
