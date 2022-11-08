@@ -17,26 +17,26 @@ Pretty simple - I've been keeping my home budget in an Excel spreadsheet for yea
 
 1. Create `.env` file:
 
-  ```bash
-  BUDGET_FILEPATH={PATH TO OLD BUDGET WORKBOOK}
+    ```bash
+    BUDGET_FILEPATH={PATH TO OLD BUDGET WORKBOOK}
 
-  DATABASE_URL=postgres://{USERNAME}:{PASSWORD}@localhost/{DB NAME}
+    DATABASE_URL=postgres://{USERNAME}:{PASSWORD}@localhost/{DB NAME}
 
-  POSTGRES_USER={USERNAME}
-  POSTGRES_PASSWORD={PASSWORD}
-  POSTGRES_DB={DB NAME}
-  ```
+    POSTGRES_USER={USERNAME}
+    POSTGRES_PASSWORD={PASSWORD}
+    POSTGRES_DB={DB NAME}
+    ```
 
 1. Spin up your postgres container
   
-- `docker-compose up -d`
+    - `docker-compose up -d`
 
 1. Run your migrations
 
-- `diesel migration run`
+    - `diesel migration run`
 
 1. Run the `upload_all` to load in all worksheets found at `BUDGET_FILEPATH`
 
-- `cargo run --bin upload_all`
+    - `cargo run --bin upload_all`
 
-- NOTE: Worksheet names are expected to have the format `%B %Y` e.g. `November 2022` [Rust Date Formats](https://docs.rs/chrono/latest/chrono/format/strftime/index.html)
+    - NOTE: Worksheet names are expected to have the format `%B %Y` e.g. `November 2022` [Rust Date Formats](https://docs.rs/chrono/latest/chrono/format/strftime/index.html)
